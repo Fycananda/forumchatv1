@@ -9,7 +9,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const MONGO_URI = process.env.MONGO_URI;
-const JWT_SECRET = process.env.JWT_SECRET || "defaultsecret";
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const app = express();
 app.use(cors());
