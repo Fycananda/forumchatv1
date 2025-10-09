@@ -10,6 +10,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const MONGO_URI = process.env.MONGO_URI;
 const JWT_SECRET = process.env.JWT_SECRET;
+const PORT = process.env.PORT || 4000
 
 const app = express();
 app.use(cors());
@@ -52,7 +53,7 @@ app.post("/login", async (req, res) => {
 // Socket.IO
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
-    cors: { origin: "*" }
+    cors: { origin: "*", methods: ["GET", "POST"] }
 });
 
 io.on("connection", (socket) => {
@@ -63,4 +64,4 @@ io.on("connection", (socket) => {
     });
 });
 
-httpServer.listen(4000, () => console.log("Server with socket.io running"));
+httpServer.listen(PORT, () => console.log("Server with socket.io running"));
